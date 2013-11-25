@@ -44,7 +44,7 @@
 
 #ifdef	TEST_WRITE
 
-int main(int argc, char *argv[])
+int main()
 {
 	int i, ret;
 	char str[10];
@@ -68,14 +68,14 @@ int main(int argc, char *argv[])
 	// Put string/integer associations, "00000001"/1, ..., "01000000"/1000000.
 	for (i = 0;i < NUMELEMS;++i) {
 		sprintf(str, "%08d", i);
-		if (ret = cqdb_writer_put(dbw, str, i)) {
+		if ((ret = cqdb_writer_put(dbw, str, i))) {
 			fprintf(stderr, "ERROR: failed to put a pair '%s'/%d.\n", str, i);
 			goto error_exit;	
 		}
 	}
 
 	// Close the CQDB.
-	if (ret = cqdb_writer_close(dbw)) {
+	if ((ret = cqdb_writer_close(dbw))) {
 		fprintf(stderr, "ERROR: failed to close the CQDB.\n");		
 		goto error_exit;
 	}
@@ -92,9 +92,9 @@ error_exit:
 
 #else /*TEST_WRITE*/
 
-int main(int argc, char *argv[])
+int main()
 {
-	int i, j, ret;
+	int i, j;
 	long size = 0;
 	const char *value = NULL;
 	char str[10], *buffer = NULL;
