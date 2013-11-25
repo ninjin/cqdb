@@ -1,4 +1,4 @@
-= Constant Quark Database (CQDB) =
+# Constant Quark Database (CQDB) #
 
 Unofficial fork/repository of the [Constant Quark Database][cqdb] (CQDB) by
 [Naoki Okazaki][okazaki]. Removes several warnings raised by the compiler if
