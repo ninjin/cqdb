@@ -38,7 +38,7 @@
 
 
 
-/** 
+/**
  * \addtogroup cqdb_const CQDB Constants
  * @{
  *
@@ -72,7 +72,7 @@ enum {
 
 
 
-/** 
+/**
  * \addtogroup cqdb_writer CQDB Writer API
  * @{
  *
@@ -148,7 +148,7 @@ int cqdb_writer_close(cqdb_writer_t* dbw);
 
 
 
-/** 
+/**
  * \addtogroup cqdb_reader CQDB Reader API
  * @{
  *
@@ -160,7 +160,7 @@ int cqdb_writer_close(cqdb_writer_t* dbw);
  *	etc.
  *	Secondaly, one can design the file format freely only if the memory
  *	block for a database is extracted from the file.
- *	
+ *
  *	The most fundamental operation on the CQDB reader API is forward lookup
  *	through the use of cqdb_to_id() function, which retrieves integer
  *	identifiers from strings. Reverse lookup (retrieving strings from integer
@@ -279,7 +279,7 @@ modify associations, nor check collisions in strings and identifiers; thus,
 it may be necessary to use an existing Quark implementation to manage proper
 associations between strings and identifiers on memory.
 
-This library is used by the 
+This library is used by the
 <a href="http://www.chokkan.org/software/crfsuite/">CRFsuite</a> project.
 
 @section download Download
@@ -345,13 +345,13 @@ int main(int argc, char *argv[])
 		sprintf(str, "%08d", i);
 		if (ret = cqdb_writer_put(dbw, str, i)) {
 			fprintf(stderr, "ERROR: failed to put a pair '%s'/%d.\n", str, i);
-			goto error_exit;	
+			goto error_exit;
 		}
 	}
 
 	// Close the CQDB.
 	if (ret = cqdb_writer_close(dbw)) {
-		fprintf(stderr, "ERROR: failed to close the CQDB.\n");		
+		fprintf(stderr, "ERROR: failed to close the CQDB.\n");
 		goto error_exit;
 	}
 
@@ -371,7 +371,7 @@ error_exit:
 
 This sample code issues string queries "00000000", ..., "01000000" to retrive
 integer identifiers (forward lookups) and integer queries 0, ..., 1000000 to
-retrieve the strings  "00000000", ..., "01000000". 
+retrieve the strings  "00000000", ..., "01000000".
 
 @code
 
@@ -427,7 +427,7 @@ int main(int argc, char *argv[])
 		// Validity check.
 		if (j < 0 || i != j) {
 			fprintf(stderr, "ERROR: inconsistency error '%s'/%d.\n", str, i);
-			goto error_exit;	
+			goto error_exit;
 		}
 	}
 
@@ -438,7 +438,7 @@ int main(int argc, char *argv[])
 		// Validity check.
 		if (value == NULL || strcmp(str, value) != 0) {
 			fprintf(stderr, "ERROR: inconsistency error '%s'/%d.\n", str, i);
-			goto error_exit;	
+			goto error_exit;
 		}
 	}
 

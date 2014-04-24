@@ -70,13 +70,13 @@ int main()
 		sprintf(str, "%08d", i);
 		if ((ret = cqdb_writer_put(dbw, str, i))) {
 			fprintf(stderr, "ERROR: failed to put a pair '%s'/%d.\n", str, i);
-			goto error_exit;	
+			goto error_exit;
 		}
 	}
 
 	// Close the CQDB.
 	if ((ret = cqdb_writer_close(dbw))) {
-		fprintf(stderr, "ERROR: failed to close the CQDB.\n");		
+		fprintf(stderr, "ERROR: failed to close the CQDB.\n");
 		goto error_exit;
 	}
 
@@ -137,7 +137,7 @@ int main()
 #ifdef	CHECK_VALIDITY
 		if (i != j) {
 			fprintf(stderr, "ERROR: inconsistency error '%s'/%d.\n", str, i);
-			goto error_exit;	
+			goto error_exit;
 		}
 #endif/*CHECK_VALIDITY*/
 	}
@@ -149,7 +149,7 @@ int main()
 #ifdef	CHECK_VALIDITY
 		if (strcmp(str, value) != 0) {
 			fprintf(stderr, "ERROR: inconsistency error '%s'/%d.\n", str, i);
-			goto error_exit;	
+			goto error_exit;
 		}
 #endif/*CHECK_VALIDITY*/
 	}
