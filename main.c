@@ -94,12 +94,15 @@ error_exit:
 
 int main()
 {
-	int i, j;
+	int i;
 	long size = 0;
-	const char *value = NULL;
 	char str[10], *buffer = NULL;
 	FILE *fp = NULL;
 	cqdb_t* db = NULL;
+#ifdef CHECK_VALIDITY
+	int j;
+	const char *value = NULL;
+#endif/*CHECK_VALIDITY*/
 
 	// Open the database.
 	fp = fopen(DBNAME, "rb");
@@ -119,7 +122,7 @@ int main()
 		fprintf(stderr, "ERROR: out of memory.\n");
 		goto error_exit;
 	}
-	fread(buffer, 1, size, fp);
+	i = fread(buffer, 1, size, fp);
 	fclose(fp);
 	fp = NULL;
 
@@ -133,8 +136,10 @@ int main()
 	// Forward lookups: strings to integer identifiers.
 	for (i = 0;i < NUMELEMS;++i) {
 		sprintf(str, "%08d", i);
+#ifndef	CHECK_VALIDITY
+		cqdb_to_id(db, str);
+#else
 		j = cqdb_to_id(db, str);
-#ifdef	CHECK_VALIDITY
 		if (i != j) {
 			fprintf(stderr, "ERROR: inconsistency error '%s'/%d.\n", str, i);
 			goto error_exit;
@@ -145,8 +150,10 @@ int main()
 	// Backward lookups: integer identifiers to strings.
 	for (i = 0;i < NUMELEMS;++i) {
 		sprintf(str, "%08d", i);
+#ifndef	CHECK_VALIDITY
+		cqdb_to_string(db, i);
+#else
 		value = cqdb_to_string(db, i);
-#ifdef	CHECK_VALIDITY
 		if (strcmp(str, value) != 0) {
 			fprintf(stderr, "ERROR: inconsistency error '%s'/%d.\n", str, i);
 			goto error_exit;
