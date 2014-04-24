@@ -136,7 +136,7 @@ int main()
 	// Forward lookups: strings to integer identifiers.
 	for (i = 0;i < NUMELEMS;++i) {
 		sprintf(str, "%08d", i);
-#ifndef	CHECK_VALIDITY
+#ifndef CHECK_VALIDITY
 		cqdb_to_id(db, str);
 #else
 		j = cqdb_to_id(db, str);
@@ -150,7 +150,7 @@ int main()
 	// Backward lookups: integer identifiers to strings.
 	for (i = 0;i < NUMELEMS;++i) {
 		sprintf(str, "%08d", i);
-#ifndef	CHECK_VALIDITY
+#ifndef CHECK_VALIDITY
 		cqdb_to_string(db, i);
 #else
 		value = cqdb_to_string(db, i);
